@@ -2,8 +2,7 @@ const mongoose = require('mongoose')
 
 const { Schema } = mongoose
 
-// setting post schema
-const PostSchema = new Schema({
+const SequenceSchema = new Schema({
   owner: {
     type: Schema.Types.ObjectId,
     required: true,
@@ -33,9 +32,17 @@ const PostSchema = new Schema({
     // TODO type URL
     type: String,
   },
+  stories: [
+    {
+      type: Schema.Types.ObjectId,
+      required: true,
+      ref: 'Stories',
+    },
+  ],
 })
 
-// create post model
-const postModel = mongoose.model('Posts', PostSchema)
+// TODO sequences should finish with a quiz
 
-module.exports = postModel
+const sequenceModel = mongoose.model('Sequences', SequenceSchema)
+
+module.exports = sequenceModel
